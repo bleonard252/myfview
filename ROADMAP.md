@@ -7,3 +7,4 @@ These are "anticipated changelogs;" i.e. goals for each future release (tag). Th
 ## 1.0 Release
 * `cli`/`txt`/`curl` Rendering Engine
 * Use the GitFlow branching model
+* A unique template and not just one stolen off the Internet for testing
