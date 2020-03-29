@@ -1,3 +1,12 @@
+/** 
+ * The Myfile Viewer (myfview) middleware. It gets myfiles from
+ * the filesystem (maybe databases later) and renders them in
+ * various formats, such as HTML, JSON, and text files.
+ * @module myfview
+ */
+// The docs are powered by JSDoc
+// To use it on this file, run:
+// npm run gendoc
 var defaults = require('defaults');
 const fs = require('fs');
 const myf$debug = require('debug')('myfview');
@@ -23,10 +32,7 @@ const defconf = {
 }
 
 module.exports = 
-    /**
-     * The Myfile Viewer (myfview) middleware. It gets myfiles from
-     * the filesystem (maybe databases later) and renders them in
-     * various formats, such as HTML, JSON, and text files.
+    /** The myfview Express middleware function.
      * @param {defopts} options A set of options to pass to the middleware.
      */
     function myfview(options) {
@@ -112,8 +118,9 @@ module.exports =
             req.rentype = myf$getrentype(req.params, req.query.type, req.header["user-agent"], req.header["accept"], req.accepts);
             let user = req.myfuser;
             let rt = req.rentype;
-            if (user != "") let prof = myf$lookup(user+"");
-            else let prof = myf$lookup(req.hostname); // i.e. google.com//google.com
+            let prof = null;
+            if (user != "") prof = myf$lookup(user+"");
+            else prof = myf$lookup(req.hostname); // i.e. google.com//google.com
             if (rt == "html") {
                 //TODO: res.send(Handlebars...)
             } else { // essentially: else if (rt == "json") {
