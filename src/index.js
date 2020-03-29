@@ -6,7 +6,20 @@ const express = require('express'); //typing
 const defopts = {
     /** Path where the Myfiles are stored, sometimes myfview-config/myfiles/ */
     "profilePath": process.cwd()+"/myfview-config/myfiles/",
+    /** Filename for the myfview configuration. This file will be watched and loaded. */
     "configPath": process.cwd()+"/myfview-config/config.json",
+}
+const defconf = {
+    /** Myfile fields to be interpreted as "private;"
+     * that is, they are not shown in the following formats:
+     * ```
+     * HIDDEN in: "json", "yaml", "toml"
+     * ```
+     * @type {string[]} */
+    "privatefields": [],
+    /** Whether to watch the configuration file.
+     * Only applies on startup. */
+    "watchme": true
 }
 
 module.exports = 
@@ -18,11 +31,14 @@ module.exports =
      */
     function myfview(options) {
     options = defaults(options || {}, defopts); //look up
+    /**@type {defconf} */
     var config = JSON.parse(fs.readFileSync(options.configPath));
-    var configwatch = fs.watch(options.configPath, (ev) => { 
+    config = defaults(config || {}, defconf);
+    if (config.watchme) var configwatch = fs.watch(options.configPath, (ev) => { 
         // Code to update the config when it's... updated
         if (ev == "change") {
-            config = JSON.parse(fs.readFileSync(options.configPath))
+            let _config = JSON.parse(fs.readFileSync(options.configPath))
+            config = defaults(config || {}, defconf);
             myf$debug("Myfile config updated");
         } else if (ev == "rename") {
             myf$debug("WARNING: the config was moved or renamed! I'm not updating this file anymore!");
@@ -102,7 +118,7 @@ module.exports =
                 //TODO: res.send(Handlebars...)
             } else { // essentially: else if (rt == "json") {
                 res.type("json");
-                //TODO: config.json
+                for (var f in config.privatekeys)
                 res.send(prof)
             }
         } else next() // very important so that other things can happen

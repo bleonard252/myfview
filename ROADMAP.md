@@ -6,4 +6,4 @@ These are "anticipated changelogs;" i.e. goals for each future release (tag). Th
 * `json` Rendering Engine
 ## 1.0 Release
 * `cli`/`txt`/`curl` Rendering Engine
-* GitFlow (source code)
+* Use the GitFlow branching model
