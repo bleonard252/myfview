@@ -1,6 +1,9 @@
 # Project Roadmap
 These are "anticipated changelogs;" i.e. goals for each future release (tag). The Git tags will include the changelogs.
-# 0.1 Pre-release
+## 0.2 Pre-release
 * `html` Rendering Engine
-* `html` rendering using Handlebars
+* Rendering using Handlebars
 * `json` Rendering Engine
+## 1.0 Release
+* `cli`/`txt`/`curl` Rendering Engine
+* GitFlow (source code)
