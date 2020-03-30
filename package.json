@@ -2,6 +2,7 @@
   "name": "myfview",
   "version": "1.0.0",
   "description": "Myfile viewer",
+  "repository": {"url": "https://github.com/bleonard252/myfview"},
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
