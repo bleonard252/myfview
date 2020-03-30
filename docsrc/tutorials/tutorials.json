@@ -1,5 +1,5 @@
 {
     "middleware": {
-        "name": "Use as Express Middleware"
+        "title": "Use as Express Middleware"
     }
 }
