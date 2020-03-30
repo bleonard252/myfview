@@ -4,6 +4,7 @@
  * various formats, such as HTML, JSON, and text files.
  * @module myfview
  */
+
 // The docs are powered by JSDoc
 // To use it on this file, run:
 // npm run gendoc
@@ -193,10 +194,38 @@ module.exports = function myfview(options) {
             let prof = null;
             if (user != "") prof = myf$lookup(user+"");
             else prof = myf$lookup(req.hostname); // i.e. google.com//google.com
+
             if (rt == "html") {
                 //DONE: res.send(Handlebars...)
                 res.send(hbs$user({...prof,
+                    /** @name render_extensions
+                     * @description These are additions to the profile object passed to the Handlebars renderer.
+                     * They are used to format information that is otherwise difficult to show, or
+                     * give hints to the renderer about how to render the page.
+                     * 
+                     * The HTML template is `user.hbs` and the CLI template is `cli.hbs`.
+                     * 
+                     * @namespace
+                     * @global
+                     */
+                    /** The display name of the user. This is the given name if it's available,
+                     * then the username (in the URL) if it's not, then "No display name".
+                     * 
+                     * Available in the HTML and CLI templates.
+                     * @type {string}
+                     * @memberof render_extensions 
+                     * @instance*/
                     _displayname: prof['name'] || user || "No display name",
+                    /** The username of the user, as it appears in the filename and URL.
+                     * @type {string}
+                     * @memberof render_extensions */
+                    _username: user || "",
+                    /** Hints to Handlebars to use dark mode. This may be deprecated in a future
+                     * release to enable support for prefers-color-scheme.
+                     * 
+                     * Only available for the HTML template.
+                     * @type {boolean}
+                     * @memberof render_extensions */
                     _darkflag: config.forcedark || (req.query.dark === '') || (req.query.theme == 'dark') || false
                 })); 
                 //Protip: you can add more key-value pairs to the object above!
@@ -207,8 +236,14 @@ module.exports = function myfview(options) {
                 res.type("text/plain");
                 //myf$debug("%o",req.query.nc);
                 res.send(hbs$cli({...prof, 
-                    /** The no-color flag. If this is present, hide colors. */
+                    /** The no-color flag. If this is present, hide colors.
+                     * 
+                     * Only available for the CLI template.
+                     * @type {boolean}
+                     * @memberof render_extensions */
                     _nc: (req.query.nc === '' ? true : false) || (req.query.nocolor === '' ? true : false),
+                    // _displayname and _username are already documented in HTML
+                    _username: user || "",
                     _displayname: prof['name'] || user || "No display name"
                 }));
             } else { // essentially: else if (rt == "json") {
