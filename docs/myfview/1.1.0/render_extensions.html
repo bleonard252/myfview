@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: config</title>
+    <title>JSDoc: render_extensions</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -44,7 +44,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-middleware.html">Use as Express Middleware</a></li></ul><h3>Modules</h3><ul><li><a href="module-hbs-helpers.html">hbs-helpers</a></li><li><a href="module-myfview.html">myfview</a></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li><li><a href="options.html">options</a></li><li><a href="render_extensions.html">render_extensions</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-middleware.html">Use as Express Middleware</a></li><li><a href="tutorial-standalone.html">Using myfview on its own</a></li></ul><h3>Modules</h3><ul><li><a href="module-hbs-helpers.html">hbs-helpers</a></li><li><a href="module-myfview.html">myfview</a></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li><li><a href="options.html">options</a></li><li><a href="render_extensions.html">render_extensions</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Namespace</p>
-                        <h1>config</h1>
+                        <h1>render_extensions</h1>
                     </header>
                     
                     
@@ -64,7 +64,7 @@
 
 <header>
     
-        <h2>config</h2>
+        <h2>render_extensions</h2>
         
     
 </header>
@@ -73,8 +73,10 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>The (default) configuration file data for the middleware.</p>
-<p>This should be in the configuration file named by <a href="options.html#.configPath">options.configPath</a>.</p></div>
+            <div class="description"><p>These are additions to the profile object passed to the Handlebars renderer.
+They are used to format information that is otherwise difficult to show, or
+give hints to the renderer about how to render the page.</p>
+<p>The HTML template is <code>user.hbs</code> and the CLI template is <code>cli.hbs</code>.</p></div>
         
 
         
@@ -115,7 +117,7 @@
         <p class="tag-source">
             <a href="index.js.html" class="button">View Source</a>
             <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line37">line 37</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line201">line 201</a>
             </span>
         </p>
     
@@ -153,15 +155,15 @@
 
     </span>
 
-<h4 class="name" id=".forcedark">
-    <a class="href-link" href="#.forcedark">#</a>
+<h4 class="name" id="._darkflag">
+    <a class="href-link" href="#._darkflag">#</a>
     
         
             <span class='tag'>static</span>
         
     
     <span class="code-name">
-        forcedark
+        _darkflag
     </span>
     
 </h4>
@@ -170,7 +172,9 @@
 
 
 <div class="description">
-    <p>Force dark mode.</p>
+    <p>Hints to Handlebars to use dark mode. This may be deprecated in a future
+release to enable support for prefers-color-scheme.</p>
+<p>Only available for the HTML template.</p>
 </div>
 
 
@@ -212,7 +216,7 @@
         <p class="tag-source">
             <a href="index.js.html" class="button">View Source</a>
             <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line56">line 56</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line229">line 229</a>
             </span>
         </p>
     
@@ -220,170 +224,6 @@
 
 
 
-
-
-</div>
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type">Array.&lt;string></span>
-
-
-    </span>
-
-<h4 class="name" id=".privatefields">
-    <a class="href-link" href="#.privatefields">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-    
-    <span class="code-name">
-        privatefields
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Myfile fields to be interpreted as &quot;private;&quot;
-that is, they are not shown in the following formats:
-&quot;json&quot;, &quot;yaml&quot;, &quot;toml&quot;</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="index.js.html" class="button">View Source</a>
-            <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line42">line 42</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id=".templatesPath">
-    <a class="href-link" href="#.templatesPath">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-    
-    <span class="code-name">
-        templatesPath
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>The path to the templates directory.</p>
-<p><strong>You need to have ALL the templates!</strong></p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="index.js.html" class="button">View Source</a>
-            <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line53">line 53</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>"templatesPath": "./myfview-config/templates/"</code></pre>
-    
 
 
 </div>
@@ -398,15 +238,15 @@ that is, they are not shown in the following formats:
 
     </span>
 
-<h4 class="name" id=".watchme">
-    <a class="href-link" href="#.watchme">#</a>
+<h4 class="name" id="._nc">
+    <a class="href-link" href="#._nc">#</a>
     
         
             <span class='tag'>static</span>
         
     
     <span class="code-name">
-        watchme
+        _nc
     </span>
     
 </h4>
@@ -415,8 +255,8 @@ that is, they are not shown in the following formats:
 
 
 <div class="description">
-    <p>Whether to watch the configuration file.
-Only applies on startup.</p>
+    <p>The no-color flag. If this is present, hide colors.</p>
+<p>Only available for the CLI template.</p>
 </div>
 
 
@@ -458,7 +298,167 @@ Only applies on startup.</p>
         <p class="tag-source">
             <a href="index.js.html" class="button">View Source</a>
             <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line46">line 46</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line244">line 244</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id="._username">
+    <a class="href-link" href="#._username">#</a>
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        _username
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>The username of the user, as it appears in the filename and URL.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line222">line 222</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id="_displayname">
+    <a class="href-link" href="#_displayname">#</a>
+    
+    <span class="code-name">
+        _displayname
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>The display name of the user. This is the given name if it's available,
+then the username (in the URL) if it's not, then &quot;No display name&quot;.</p>
+<p>Available in the HTML and CLI templates.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line218">line 218</a>
             </span>
         </p>
     
@@ -494,7 +494,7 @@ Only applies on startup.</p>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 19:00:07 GMT-0400 (Eastern Daylight Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 19:32:53 GMT-0400 (Eastern Daylight Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

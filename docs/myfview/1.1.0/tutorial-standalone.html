@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: options</title>
+    <title>JSDoc: Using myfview on its own</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,274 +51,63 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Namespace</p>
-                        <h1>options</h1>
+                        <p>Tutorial</p>
+                        <h1>Using myfview on its own</h1>
                     </header>
                     
-                    
-
-
-
-
-<section>
+                    <section>
 
 <header>
-    
-        <h2>options</h2>
-        
     
 </header>
 
 <article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The (default) options for the middleware.</p></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="index.js.html" class="button">View Source</a>
-            <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line23">line 23</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Members</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type">string</span>
-
-
-    </span>
-
-<h4 class="name" id=".configPath">
-    <a class="href-link" href="#.configPath">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-    
-    <span class="code-name">
-        configPath
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Filename for the myfview configuration. This file will be watched and loaded.</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="index.js.html" class="button">View Source</a>
-            <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line29">line 29</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type">string</span>
-
-
-    </span>
-
-<h4 class="name" id=".profilePath">
-    <a class="href-link" href="#.profilePath">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-    
-    <span class="code-name">
-        profilePath
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Path where the Myfiles are stored, sometimes myfview-config/myfiles/</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="index.js.html" class="button">View Source</a>
-            <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line26">line 26</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-
-    
+    <p>Since myfview is built to be run as an Express middleware, you need Express to run it. Luckily, if you want to run myfview all by itself (i.e. to test it), or with a static/built website, you can use the built-in server.</p>
+<h2>Keep in mind</h2>
+<p>The middleware uses the default options! This means:</p>
+<ul>
+<li>The <a href="config.html">config.json</a> is at &quot;$PWD/myfview-config/config.json&quot;.</li>
+<li>The myfiles should be put under &quot;$PWD/myfview-config/myfiles/&quot; with a .json extension (this may be removed in the future).</li>
+<li>Static/built files should be put under &quot;$PWD/myfview-config/static/&quot;. This includes any index.html files or whatever. Websites built with i.e. Jekyll should be put here, with an index.html or index.htm available.</li>
+</ul>
+<h2>Prerequisites</h2>
+<ul>
+<li>git</li>
+<li>npm and nodejs</li>
+</ul>
+<h2>Instructions</h2>
+<ol>
+<li>In your command prompt or terminal, do one of the following:
+<ul>
+<li>Go to an empty folder you want to install myfview to and run this (notice the trailing period):</li>
+</ul>
+<pre class="prettyprint source lang-sh"><code>git clone https://github.com/bleonard252/myfview.git .
+</code></pre>
+<ul>
+<li>If you want git to create a folder for you, exclude the period at the end and run <code>cd myfview</code> to enter the folder.</li>
+<li>Run <code>npm install -g myfview</code>. This will let you run myfview anywhere. <strong>This is the easiest method,</strong> but you may need administrator access to use it. Also, for now you'll have to copy the templates from the <a href="https://github.com/bleonard252/myfview/tree/master/views">repository</a> online.</li>
+</ul>
+</li>
+<li>If you didn't do the <code>npm</code> option above, make sure you're in the myfview folder, then run:<pre class="prettyprint source lang-sh"><code>npm install --dev
+</code></pre>
+</li>
+<li>In that folder, make sure you have the needed configuration structure. This should work:<pre class="prettyprint source lang-sh"><code>mkdir myfview-config
+mkdir myfview-config/myfiles
+mkdir myfview-config/static
+</code></pre>
+</li>
+<li>Make the <code>myfview-config/config.json</code> file as you'd prefer. Make sure it's JSON formatted and uses the fields shown in <a href="config.html">config</a>.</li>
+<li>Now you can start it! Run one of the following:
+<ul>
+<li><code>DEBUG=app node index.js</code> if you <code>git clone</code>d</li>
+<li><code>DEBUG=app myfview</code> if you <code>npm install -g</code>'d</li>
+</ul>
+</li>
+</ol>
+<p>If you did it right, you'll have a web server up and running with myfview!</p>
 </article>
 
 </section>
-
-
-
 
                 </div>
             </div>
@@ -328,7 +117,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 19:32:53 GMT-0400 (Eastern Daylight Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 19:32:54 GMT-0400 (Eastern Daylight Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
