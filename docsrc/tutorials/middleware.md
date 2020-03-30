@@ -1,4 +1,3 @@
-# Using myfview as middleware
 You want to make your myfiles available. Good for you!
 
 ## Prerequisites
