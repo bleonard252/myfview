@@ -56,7 +56,7 @@ const defconf = {
 }
 
 /** The myfview Express middleware function.
- * @param {options} options A set of options to pass to the middleware. 
+ * @param {defopts} options A set of options to pass to the middleware. 
  * NOTE: most of the settings are in {@link config} instead, where
  * they can be modified.
  * @example
@@ -66,7 +66,7 @@ const defconf = {
  */
 module.exports = function myfview(options) {
     options = defaults(options || {}, defopts); //look up
-    /** @type {config} */
+    /** @type {defconf} */
     var config = JSON.parse(fs.readFileSync(options.configPath));
     config = defaults(config || {}, defconf);
     if (config.watchme) var configwatch = fs.watch(options.configPath, (ev) => { 

@@ -22,7 +22,10 @@ const port = args.port || process.env.port || 3000
 
 app.use(xpware({})) //TODO: add config
 
-if (require.main === module) app.listen(port, () => debug(`listening on port ${port}`))
+if (require.main === module) {
+	if (args.help) console.log("myfview [-p, --port=3000] [-h, --help]\nRun a myfile viewer server.");
+	else app.listen(port, () => debug(`listening on port ${port}`));
+}
 
 module.exports = xpware; //require("myfview") will use the middleware.
 // so you can use app.use(require("myfview")({options...}))
