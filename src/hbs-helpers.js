@@ -15,16 +15,14 @@ module.exports = function hbs$helpers(hbs) {
     /** The handlebars helper `nlsp` (i.e. newline space).
      * Useful to add indentation for the CLI mode. 
      * @param {int} spaces The number of spaces to indent each newline.
-     * @param {string} content What to apply the indentation to. 
-     * @instance */
+     * @param {string} content What to apply the indentation to. */
     function nlsp(spaces, content) {
         return content.replace("\n", "\n" + (" ".repeat(spaces)))
     }
     /** The handlebars helper `chalk`.
      * Useful to add colors to the CLI mode. 
      * @param {string} cholor The color or formatting to apply.
-     * @param {string} content What to apply the formatting to.
-     * @instance */
+     * @param {string} content What to apply the formatting to. */
     function chalk(cholor, content) {
         try { return chalk[cholor](content) }
         catch (e) { myf$debug.extend("hbs:chalk")("Error: %O", e); return "" }
@@ -33,8 +31,7 @@ module.exports = function hbs$helpers(hbs) {
      * Useful to limit the length of terminal
      * lines in CLI mode. 
      * @param {Number} width The maximum size for each line. 
-     * @param {string} str What to apply the wrapping to. 
-     * @instance */
+     * @param {string} str What to apply the wrapping to. */
     function wrap(width, str) {
         return ww(str, { width, indent: `` })
     }
@@ -45,8 +42,7 @@ module.exports = function hbs$helpers(hbs) {
      * ```
      * @param {*} v1 One boolean value or condition.
      * @param {'=='|'==='|'!='|'!=='|'<'|'<='|'>'|'>='|'&&'|'||'} operator The operation to apply.
-     * @param {*} v2 Another boolean value or condition.
-     * @instance */
+     * @param {*} v2 Another boolean value or condition. */
     function cond(v1, operator, v2) {
         switch (operator) {
             case '==':
