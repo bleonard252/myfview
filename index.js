@@ -21,6 +21,7 @@ const port = args.port || process.env.port || 3000
 //app.use(DEBUG("app:http"))
 
 app.use(xpware({})) //TODO: add config
+app.use(express.static("myfview-config/static", {fallthrough:true}));
 
 if (require.main === module) {
 	if (args.help) console.log("myfview [-p, --port=3000] [-h, --help]\nRun a myfile viewer server.");
