@@ -10,6 +10,8 @@
 var defaults = require('defaults');
 const fs = require('fs');
 const hbs = require('handlebars');
+const chalk = require('chalk');
+const ww = require('word-wrap');
 const myf$debug = require('debug')('myfview');
 const express = require('express'); //typing
 
@@ -75,12 +77,31 @@ module.exports = function myfview(options) {
             configwatch.close();
         }
     });
-    /** The Handlebars template for user pages. */
+    /** The handlebars helper `nlsp` (i.e. newline space).
+     * Useful to add indentation for the CLI mode. */
+    hbs.registerHelper("nlsp", function(spaces,content){
+        return content.replace("\n","\n"+(" ".repeat(spaces)))
+    })
+    /** The handlebars helper `chalk`.
+     * Useful to add colors to the CLI mode. */
+    hbs.registerHelper("chalk", function(cholor,content){
+        try {return chalk[cholor](content)}
+        catch(e) {myf$debug.extend("hbs:chalk")("Error: %O",e); return ""}
+    })
+    /** The handlebars helper `wrap`.
+     * Useful to limit the length of terminal
+     * lines in CLI mode. */
+    hbs.registerHelper("wrap", function(width, str){
+        return ww(str,{width,indent:``})
+    })
+    /** The Handlebars template for profile pages. */
     const hbs$user = hbs.compile(`${fs.readFileSync(config.templatesPath+"/user.hbs").toString()}`)
+    /** The Handlebars template for CLI profile pages. */
+    const hbs$cli = hbs.compile(`${fs.readFileSync(config.templatesPath+"/cli.hbs").toString()}`)
     /**
      * Lookup a Myfile locally (i.e. on this server).
      * @param {string} name The Myfile username to look up.
-     * @returns {Promise<*>} The Myfile data (as a JSON object), or `null` if it doesn't exist.
+     * @returns {string} The Myfile data (as a JSON object), or `null` if it doesn't exist.
      */
     function myf$lookup(name) {
         /*return Promise((resolve,reject) => {
@@ -122,7 +143,10 @@ module.exports = function myfview(options) {
             "json": "json",
             "js": "json",
             "raw": "json",
-            "curl": "json", //TODO: change this to cli when it comes
+            "curl": "cli", //DONE: change this to cli when it comes
+            "txt": "cli",
+            "text": "cli",
+            "cli": "cli",
         }
         d("Type value: %o", t);
         if (t != null && t != undefined) 
@@ -172,17 +196,24 @@ module.exports = function myfview(options) {
             if (user != "") prof = myf$lookup(user+"");
             else prof = myf$lookup(req.hostname); // i.e. google.com//google.com
             if (rt == "html") {
-                //TODO: res.send(Handlebars...)
+                //DONE: res.send(Handlebars...)
                 res.send(hbs$user({...prof})); 
                 //Protip: you can add more key-value pairs to the object above!
                 //        i.e. {...prof, _privatething: "value"}
                 //        This allows access to the Myfile as Handlebars templates
                 //        and also enables extensions!
+            } else if (rt == "cli") {
+                res.type("text/plain");
+                //myf$debug("%o",req.query.nc);
+                res.send(hbs$cli({...prof, 
+                    /** The no-color flag. If this is present, hide colors. */
+                    _nc: (req.query.nc === '' ? true : false) || (req.query.nocolor === '' ? true : false)
+                }));
             } else { // essentially: else if (rt == "json") {
                 res.type("json");
                 for (var k in config.privatekeys) {delete prof[k]}
                 //TODO: delete by prefix, too
-                res.send(prof)
+                res.send(prof);
             }
         } else next() // very important so that other things can happen
     }
