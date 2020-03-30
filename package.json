@@ -2,7 +2,9 @@
   "name": "myfview",
   "version": "1.0.0",
   "description": "Myfile viewer",
-  "repository": {"url": "https://github.com/bleonard252/myfview"},
+  "repository": {
+    "url": "https://github.com/bleonard252/myfview"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +18,7 @@
     "debug": "^4.1.1",
     "defaults": "^1.0.3",
     "handlebars": "^4.7.3",
+    "js-yaml": "^3.13.1",
     "supports-color": "^7.1.0",
     "word-wrap": "^1.2.3"
   },
