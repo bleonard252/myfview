@@ -1,247 +1,50 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>EXAMPLE TEMPLATE - REPLACE ME</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet">
-
-    <link href="https://colorlib.com/preview/theme/cvportfolio/common-css/bootstrap.css" rel="stylesheet">
-    <link href="https://colorlib.com/preview/theme/cvportfolio/common-css/ionicons.css" rel="stylesheet">
-    <link href="https://colorlib.com/preview/theme/cvportfolio/common-css/fluidbox.min.css" rel="stylesheet">
-    <link href="https://colorlib.com/preview/theme/cvportfolio/01-cv-portfolio/css/styles.css" rel="stylesheet">
-    <link href="https://colorlib.com/preview/theme/cvportfolio/01-cv-portfolio/css/responsive.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{_displayname}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    {{#if _darkflag }}<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">{{/if}}
+    <style>
+        .profile-pic {
+            width: calc(18rem/2);
+            margin: -32px auto auto auto;
+            height: calc(18rem/2);
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="intro-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1 col-lg-2"></div>
-                <div class="col-md-10 col-lg-8">
-                    <div class="intro">
-                        <div class="profile-img"><img src="{{picture}}" alt=""></div>
-                        <h2><b>{{name}}</b></h2>
-                        <p class="information margin-tb-30">
-                            {{description}}
-                        </p>
-                    </div>
-                </div>
+    <main class="container-lg">
+        <div class="card" style="width: 18rem; margin: auto; margin-top: 4rem">
+            {{#if picture}}<img src="{{picture}}" class="profile-pic" alt="Profile picture">{{/if}}
+            <div class="card-body">
+                <h5 class="card-title">{{_displayname}}</h5>
+                <p class="card-text">{{description}}</p>
             </div>
         </div>
-    </section>
-    <section class="about-section section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="heading">
-                        <h3><b>About me</b></h3>
-                        <h6 class="font-lite-black"><b>PROFESSIONAL PATH</b></h6>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <p class="margin-b-50">Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque
-                        sit amet sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nulla maximus pellentes que velit, quis consequat nulla effi citur at.
-                        Maecenas sed massa tristique.Duis non volutpat arcu, eu mollis tellus.
-                        Sed finibus aliquam neque sit amet sodales. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Nulla maximus pellentes que velit, quis consequat nulla
-                        effi citur at.Maecenas sed massa tristique.</p>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="radial-prog-area margin-b-30">
-                                <div class="radial-progress" data-prog-percent=".97">
-                                    <div></div>
-                                    <h6 class="progress-title">HTML5 & CSS3</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="radial-prog-area margin-b-30">
-                                <div class="radial-progress" data-prog-percent=".78">
-                                    <div></div>
-                                    <h6 class="progress-title">WEB DESIGN</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="radial-prog-area margin-b-30">
-                                <div class="radial-progress" data-prog-percent=".67">
-                                    <div></div>
-                                    <h6 class="progress-title">JAVA</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3">
-                            <div class="radial-prog-area margin-b-50">
-                                <div class="radial-progress" data-prog-percent=".97">
-                                    <div></div>
-                                    <h6 class="progress-title">PHP</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        {{#if cards}}{{#each cards}}{{#unless this.type}}{{#if this.title}}{{#if this.text}}
+        <div class="card" style="width: 18rem; margin: auto; margin-top: 2em">
+            <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+                <p class="card-text">{{text}}</p>
             </div>
         </div>
-    </section>
-    <section class="experience-section section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="heading">
-                        <h3><b>Work Experience</b></h3>
-                        <h6 class="font-lite-black"><b>PREVIOUS JOBS</b></h6>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="experience margin-b-50">
-                        <h4><b>JUNIOR PROJECT MANAGER</b></h4>
-                        <h5 class="font-yellow"><b>DESIGN STUDIO</b></h5>
-                        <h6 class="margin-t-10">MARCH 2015 - PRESENT</h6>
-                        <p class="font-semi-white margin-tb-30">Duis non volutpat arcu, eu mollis tellus. Sed finibus
-                            aliquam neque sit amet sodales.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus pellentes que velit,
-                            quis consequat nulla effi citur at. Maecenas sed massa tristique.Duis non volutpat arcu,
-                            eu mollis tellus. Sed finibus aliquam neque sit amet sodales. </p>
-                        <ul class="list margin-b-30">
-                            <li>Duis non volutpat arcu, eu mollis tellus.</li>
-                            <li>Quis consequat nulla effi citur at.</li>
-                            <li>Sed finibus aliquam neque sit.</li>
-                        </ul>
-                    </div>
-                    <div class="experience margin-b-50">
-                        <h4><b>WEB MASTER/WEB DEVELOPER</b></h4>
-                        <h5 class="font-yellow"><b>DESIGN & WEB STUDIO</b></h5>
-                        <h6 class="margin-t-10">APRIL 2014 - FEBRUARY 2015</h6>
-                        <p class="font-semi-white margin-tb-30">Duis non volutpat arcu, eu mollis tellus. Sed finibus
-                            aliquam neque sit amet sodales.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus pellentes que velit,
-                            quis consequat nulla effi citur at. Maecenas sed massa tristique.Duis non volutpat arcu,
-                            eu mollis tellus. Sed finibus aliquam neque sit amet sodales. </p>
-                        <ul class="list margin-b-30">
-                            <li>Duis non volutpat arcu, eu mollis tellus.</li>
-                            <li>Quis consequat nulla effi citur at.</li>
-                            <li>Sed finibus aliquam neque sit.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="education-section section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="heading">
-                        <h3><b>Education</b></h3>
-                        <h6 class="font-lite-black"><b>ACADEMIC CAREER</b></h6>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="education-wrapper">
-                        <div class="education margin-b-50">
-                            <h4><b>MASTER DEGREE IN SCIENCE</b></h4>
-                            <h5 class="font-yellow"><b>UCLA - SCIENCE AND ENGINEERING</b></h5>
-                            <h6 class="font-lite-black margin-t-10">GRADUATED IN MAY 2010(2 YEARS)</h6>
-                            <p class="margin-tb-30">Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque
-                                sit amet sodales.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus pellentes que
-                                velit,
-                                quis consequat nulla effi citur at. Maecenas sed massa tristique.Duis non volutpat arcu,
-                                eu mollis tellus. Sed finibus aliquam neque sit amet sodales. </p>
-                        </div>
-                        <div class="education margin-b-50">
-                            <h4><b>COURSE ON COMPUTER SCIENCE</b></h4>
-                            <h5 class="font-yellow"><b>NEW YORK PUBLIC UNIVERSITY</b></h5>
-                            <h6 class="font-lite-black margin-t-10">GRADUATED IN MAY 2009(6 MONTHS)</h6>
-                            <p class="margin-tb-30">Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque
-                                sit amet sodales.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus pellentes que
-                                velit,
-                                quis consequat nulla effi citur at. Maecenas sed massa tristique.Duis non volutpat arcu,
-                                eu mollis tellus. Sed finibus aliquam neque sit amet sodales. </p>
-                        </div>
-                        <div class="education margin-b-50">
-                            <h4><b>GRADUATED VALEDICTERIAN</b></h4>
-                            <h5 class="font-yellow"><b>PUBLIC COLLEGE</b></h5>
-                            <h6 class="font-lite-black margin-t-10">GRADUATED IN MAY 2008(4 YEARS)</h6>
-                            <p class="margin-tb-30">Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque
-                                sit amet sodales.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus pellentes que
-                                velit,
-                                quis consequat nulla effi citur at. Maecenas sed massa tristique.Duis non volutpat arcu,
-                                eu mollis tellus. Sed finibus aliquam neque sit amet sodales. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="counter-section" id="counter">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-3">
-                    <div class="counter margin-b-30">
-                        <h1 class="title"><b><span class="counter-value" data-duration="400" data-count="3">0</span></b>
-                        </h1>
-                        <h5 class="desc"><b>Coder Degrees</b></h5>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
-                    <div class="counter margin-b-30">
-                        <h1 class="title"><b><span class="counter-value" data-duration="1400"
-                                    data-count="25">0</span></b></h1>
-                        <h5 class="desc"><b>Project Completed</b></h5>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
-                    <div class="counter margin-b-30">
-                        <h1 class="title"><b><span class="counter-value" data-duration="700"
-                                    data-count="311">0</span></b></h1>
-                        <h5 class="desc"><b>Satisfied Clients</b></h5>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
-                    <div class="counter margin-b-30">
-                        <h1 class="title"><b><span class="counter-value" data-duration="2000"
-                                    data-count="732">0</span></b></h1>
-                        <h5 class="desc"><b>Finished Projects</b></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <p class="copyright">
-
-            Copyright &copy;
-            <script type="text/javascript">document.write(new Date().getFullYear());</script> All rights reserved | This
-            template is made with <i class="ion-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                target="_blank">Colorlib</a>
-
-        </p>
-    </footer>
-
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/jquery-3.2.1.min.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/tether.min.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/bootstrap.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/isotope.pkgd.min.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/jquery.waypoints.min.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/progressbar.min.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/jquery.fluidbox.min.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
-    <script src="https://colorlib.com/preview/theme/cvportfolio/common-js/scripts.js"
-        type="0e114b0d578ec295d648ce47-text/javascript"></script>
+        {{/if}}{{/if}}{{/unless}}{{/each}}{{/if}}
+    </main>
+</body>
 
 </html>
