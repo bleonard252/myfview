@@ -219,7 +219,11 @@ module.exports = function myfview(options) {
                 for (var k in config.privatekeys) {delete mod[k]}
                 //TODO: delete by prefix, too
                 if (rt == "yaml") res.type("yaml").send(YAML.safeDump(mod));
-                if (rt == "toml") res.type("toml").send(TOML.stringify(mod));
+                if (rt == "toml") res.type("application/toml").send(TOML.stringify(mod));
+                if (rt == "yaml" && (req.query.nd || req.query.forcerender)) res.type("txt").send(YAML.safeDump(mod));
+                if (rt == "toml" && (req.query.nd || req.query.forcerender)) res.type("txt").send(TOML.stringify(mod));
+                //NOTE: using ?y&forcerender will use the wrong MIME type; it'll instead display it as text,
+                //      thus forcing it to render.
                 else res.send(mod);
             }
         } else next() // very important so that other things can happen
