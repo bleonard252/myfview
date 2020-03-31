@@ -1,6 +1,6 @@
 
   {{#unless _nc}}{{{chalk "bold" "Name:"}}}{{else}}Name:{{/unless}} {{{name}}}
-  {{#unless _nc}}{{{chalk "bold" "Bio:"}}}{{else}}Bio:{{/unless}}  {{{nlsp 8 (wrap 30 description)}}}
+  {{#unless _nc}}{{{chalk "bold" "Bio:"}}}{{else}}Bio:{{/unless}}  {{{nlsp 8 (wrap 50 description)}}}
   {{#unless _nc}}{{{chalk "bold" "Pic:"}}}{{else}}Pic:{{/unless}}  {{{picture}}}
 {{#if cards}}{{#each cards}}{{#unless this.type}}{{#if this.title}}{{#if this.text}}
   {{#unless @root._nc}}{{{chalk "underline" this.title}}}{{else}}Title: {{{this.title}}}{{/unless}}
