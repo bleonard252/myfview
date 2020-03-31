@@ -74,13 +74,30 @@ module.exports = function hbs$helpers(hbs) {
                 return false
         }
     }
+    /**
+     * Convert a Markdown inline string to HTML.
+     * @param {string} content The content to convert.
+     */
     function markdown(content) {
         return md.renderInline(content);
+    }
+    /** Convert a Markdown link to text or keep the original.
+     * The string must include exactly one Markdown link;
+     * otherwise it will be returned as-is.
+     * @param {string} content The content to convert.
+     */
+    function linksplit(content) {
+        if (content.startsWith("[") && content.endsWith(")") && content.match(/\]\(/).length == 1) {
+            let x = content.substr(1, content.length - 2);
+            x = x.replace('](', ': ');
+            return x
+        } else return content
     }
     hbs.registerHelper("nlsp", nlsp);
     hbs.registerHelper("chalk", chalk);
     hbs.registerHelper("wrap", wrap);
     hbs.registerHelper("cond", cond);
     hbs.registerHelper("md", markdown);
+    hbs.registerHelper("linksplit", linksplit);
     return hbs
 }
