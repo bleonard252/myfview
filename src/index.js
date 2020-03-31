@@ -221,6 +221,8 @@ module.exports = function myfview(options) {
                      * @instance*/
                     _displayname: prof['name'] || user || "No display name",
                     /** The username of the user, as it appears in the filename and URL.
+                     * 
+                     * Available in the HTML and CLI templates.
                      * @type {string}
                      * @memberof render_extensions */
                     _username: user || "",
