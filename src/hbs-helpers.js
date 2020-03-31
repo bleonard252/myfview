@@ -1,6 +1,11 @@
 const Handlebars = require('handlebars');
-const chalk = require('chalk');
+const $chalk = require('chalk');
+const mark = require('markdown-it');
 const ww = require('word-wrap');
+const myf$debug = require('debug')('myfview');
+
+var md = mark({linkify: true, html: false});
+md.block.ruler.__rules__.forEach(function(x){md.disable(x.name)}); //disable all the built-in blocks
 /**
  * myfview's Handlebars helpers.
  * 
@@ -17,14 +22,14 @@ module.exports = function hbs$helpers(hbs) {
      * @param {int} spaces The number of spaces to indent each newline.
      * @param {string} content What to apply the indentation to. */
     function nlsp(spaces, content) {
-        return content.replace("\n", "\n" + (" ".repeat(spaces)))
+        return content.replace(/(\r\n|\r|\n)/g, "$1" + (" ".repeat(spaces)))
     }
     /** The handlebars helper `chalk`.
      * Useful to add colors to the CLI mode. 
      * @param {string} cholor The color or formatting to apply.
      * @param {string} content What to apply the formatting to. */
     function chalk(cholor, content) {
-        try { return chalk[cholor](content) }
+        try { return $chalk[cholor](content) }
         catch (e) { myf$debug.extend("hbs:chalk")("Error: %O", e); return "" }
     }
     /** The handlebars helper `wrap`.
@@ -69,9 +74,30 @@ module.exports = function hbs$helpers(hbs) {
                 return false
         }
     }
+    /**
+     * Convert a Markdown inline string to HTML.
+     * @param {string} content The content to convert.
+     */
+    function markdown(content) {
+        return md.renderInline(content);
+    }
+    /** Convert a Markdown link to text or keep the original.
+     * The string must include exactly one Markdown link;
+     * otherwise it will be returned as-is.
+     * @param {string} content The content to convert.
+     */
+    function linksplit(content) {
+        if (content.startsWith("[") && content.endsWith(")") && content.match(/\]\(/).length == 1) {
+            let x = content.substr(1, content.length - 2);
+            x = x.replace('](', ': ');
+            return x
+        } else return content
+    }
     hbs.registerHelper("nlsp", nlsp);
     hbs.registerHelper("chalk", chalk);
     hbs.registerHelper("wrap", wrap);
     hbs.registerHelper("cond", cond);
+    hbs.registerHelper("md", markdown);
+    hbs.registerHelper("linksplit", linksplit);
     return hbs
 }

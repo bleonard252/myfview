@@ -28,22 +28,41 @@
 </head>
 
 <body>
-    <main class="container-lg">
-        <div class="card" style="width: 18rem; margin: auto; margin-top: 4rem">
-            {{#if picture}}<img src="{{picture}}" class="profile-pic" alt="Profile picture">{{/if}}
-            <div class="card-body">
-                <h5 class="card-title">{{_displayname}}</h5>
-                <p class="card-text">{{description}}</p>
+    <main class="container">
+        <div class="row">
+            {{#unless cards}}<div class="col-4"></div>{{/unless}}
+            <div class="col-4">
+                <div class="card" style="/*width: 18rem;*/ margin: auto; margin-top: 4rem">
+                    {{#if picture}}<img src="{{picture}}" class="profile-pic" alt="Profile picture">{{/if}}
+                    <div class="card-body">
+                        <h5 class="card-title">{{_displayname}}</h5>
+                        <p class="card-text">{{{md description}}}</p>
+                        {{#if links}}<ul>{{#each links}}
+                            <li>{{{md this}}}</li>
+                            {{/each}}</ul>{{/if}}
+                    </div>
+                </div>
+                {{!Previous location of cards. Will probably move back}}
             </div>
+            {{#if cards}}<div class="col-8">
+                {{#each cards}}{{#unless this.type}}{{#if this.title}}{{#if this.text}}
+                <div class="card" style="/*width: 18rem;*/ margin: auto; margin-top: 2em">
+                    {{#if this.picture}}<img src="{{picture}}" class="card-img-top">{{/if}}
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{text}}</p>
+                    </div>
+                </div>{{else if this.picture}}
+                <div class="card" style="/*width: 18rem;*/ margin: auto; margin-top: 2em">
+                    <img src="{{picture}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        {{! already checked for the text. it doesn't exist. don't show it. }}
+                    </div>
+                </div>
+                {{/if}}{{/if}}{{/unless}}{{/each}}
+            </div>{{else}}<div class="col-4"></div>{{/if}}
         </div>
-        {{#if cards}}{{#each cards}}{{#unless this.type}}{{#if this.title}}{{#if this.text}}
-        <div class="card" style="width: 18rem; margin: auto; margin-top: 2em">
-            <div class="card-body">
-                <h5 class="card-title">{{title}}</h5>
-                <p class="card-text">{{text}}</p>
-            </div>
-        </div>
-        {{/if}}{{/if}}{{/unless}}{{/each}}{{/if}}
     </main>
 </body>
 
