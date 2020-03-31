@@ -23,7 +23,7 @@
         "encoding": "utf8",
         "destination": "./docs/",
         "recurse": true,
-        "__tutorials": "path/to/tutorials"
+        "tutorials": "./docsrc/tutorials"
     }
 }
 

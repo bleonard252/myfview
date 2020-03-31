@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: myfview</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-middleware.html">Use as Express Middleware</a></li><li><a href="tutorial-standalone.html">Using myfview on its own</a></li></ul><h3>Modules</h3><ul><li><a href="module-hbs-helpers.html">hbs-helpers</a></li><li><a href="module-myfview.html">myfview</a></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li><li><a href="options.html">options</a></li><li><a href="render_extensions.html">render_extensions</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Module</p>
+                        <h1>myfview</h1>
+                    </header>
+                    
+                    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>The Myfile Viewer (myfview) middleware. It gets myfiles from
+the filesystem (maybe databases later) and renders them in
+various formats, such as HTML, JSON, and text files.</p></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line1">line 1</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+
+    
+    <h4 class="name" id="module:myfview">
+        <a class="href-link" href="#module:myfview">#</a>
+        
+        <span class="code-name">
+            
+                (require("myfview"))<span class="signature">(options)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>The myfview Express middleware function.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">defopts</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>A set of options to pass to the middleware.
+NOTE: most of the settings are in <a href="config.html">config</a> instead, where
+they can be modified.</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line68">line 68</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>const myfview = require('myfview'); //somewhere up here
+// require('express'); and stuff up here too
+app.use(myfview({ options goes here... }))</code></pre>
+    
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">defconf</span>
+
+
+    </span>
+
+<h4 class="name" id="~config">
+    <a class="href-link" href="#~config">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+    
+    <span class="code-name">
+        config
+    </span>
+    
+</h4>
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line71">line 71</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+<h4 class="name" id="~hbs$cli">
+    <a class="href-link" href="#~hbs$cli">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        hbs$cli
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>The Handlebars template for CLI profile pages.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line88">line 88</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+<h4 class="name" id="~hbs$user">
+    <a class="href-link" href="#~hbs$user">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        hbs$user
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>The Handlebars template for profile pages.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line86">line 86</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~myf$getrentype">
+        <a class="href-link" href="#~myf$getrentype">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                myf$getrentype<span class="signature">(q, t, u, a)</span><span class="type-signature"> &rarr; {'html'|'cli'|'json'|'yaml'|'toml'}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Get the style the myfile middleware should use
+to render the data.</p>
+<p>From <code>?type={type}</code> and <code>?{type}</code>.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>q</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;string></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The query parameters.</p></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>t</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The <code>type</code> query parameter. Can be <code>null</code>.</p></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>u</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The <code>user-agent</code> header.</p></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>a</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">express.Request</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The <code>req</code>uest from Express.</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>"json" 
+// If ?type exists and doesn't match a type or alias, it'll fall back to JSON instead.</li>
+        </ul></dd>
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line124">line 124</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The type of rendering to use, as a string.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">'html'</span>
+|
+
+<span class="param-type">'cli'</span>
+|
+
+<span class="param-type">'json'</span>
+|
+
+<span class="param-type">'yaml'</span>
+|
+
+<span class="param-type">'toml'</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~myf$lookup">
+        <a class="href-link" href="#~myf$lookup">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                myf$lookup<span class="signature">(name)</span><span class="type-signature"> &rarr; {string}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Lookup a Myfile locally (i.e. on this server).</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>name</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The Myfile username to look up.</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line95">line 95</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The Myfile data (as a JSON object), or <code>null</code> if it doesn't exist.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">string</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~myf$middleware">
+        <a class="href-link" href="#~myf$middleware">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                myf$middleware<span class="signature">(req, res, next)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>The inner middleware function.
+As per Express requirements for middleware, it takes <code>req</code>, <code>res</code>, and <code>next</code>.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>req</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">express.Request</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>res</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">express.Response</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>next</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">express.NextFunction</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line177">line 177</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 19:32:53 GMT-0400 (Eastern Daylight Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+    "middleware": {
+        "title": "Use as Express Middleware"
+    },
+    "standalone": {
+        "title": "Using myfview on its own"
+    }
+}

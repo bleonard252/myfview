@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: Using myfview on its own</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-middleware.html">Use as Express Middleware</a></li><li><a href="tutorial-standalone.html">Using myfview on its own</a></li></ul><h3>Modules</h3><ul><li><a href="module-hbs-helpers.html">hbs-helpers</a></li><li><a href="module-myfview.html">myfview</a></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li><li><a href="options.html">options</a></li><li><a href="render_extensions.html">render_extensions</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Tutorial</p>
+                        <h1>Using myfview on its own</h1>
+                    </header>
+                    
+                    <section>
+
+<header>
+    
+</header>
+
+<article>
+    <p>Since myfview is built to be run as an Express middleware, you need Express to run it. Luckily, if you want to run myfview all by itself (i.e. to test it), or with a static/built website, you can use the built-in server.</p>
+<h2>Keep in mind</h2>
+<p>The middleware uses the default options! This means:</p>
+<ul>
+<li>The <a href="config.html">config.json</a> is at &quot;$PWD/myfview-config/config.json&quot;.</li>
+<li>The myfiles should be put under &quot;$PWD/myfview-config/myfiles/&quot; with a .json extension (this may be removed in the future).</li>
+<li>Static/built files should be put under &quot;$PWD/myfview-config/static/&quot;. This includes any index.html files or whatever. Websites built with i.e. Jekyll should be put here, with an index.html or index.htm available.</li>
+</ul>
+<h2>Prerequisites</h2>
+<ul>
+<li>git</li>
+<li>npm and nodejs</li>
+</ul>
+<h2>Instructions</h2>
+<ol>
+<li>In your command prompt or terminal, do one of the following:
+<ul>
+<li>Go to an empty folder you want to install myfview to and run this (notice the trailing period):</li>
+</ul>
+<pre class="prettyprint source lang-sh"><code>git clone https://github.com/bleonard252/myfview.git .
+</code></pre>
+<ul>
+<li>If you want git to create a folder for you, exclude the period at the end and run <code>cd myfview</code> to enter the folder.</li>
+<li>Run <code>npm install -g myfview</code>. This will let you run myfview anywhere. <strong>This is the easiest method,</strong> but you may need administrator access to use it. Also, for now you'll have to copy the templates from the <a href="https://github.com/bleonard252/myfview/tree/master/views">repository</a> online.</li>
+</ul>
+</li>
+<li>If you didn't do the <code>npm</code> option above, make sure you're in the myfview folder, then run:<pre class="prettyprint source lang-sh"><code>npm install --dev
+</code></pre>
+</li>
+<li>In that folder, make sure you have the needed configuration structure. This should work:<pre class="prettyprint source lang-sh"><code>mkdir myfview-config
+mkdir myfview-config/myfiles
+mkdir myfview-config/static
+</code></pre>
+</li>
+<li>Make the <code>myfview-config/config.json</code> file as you'd prefer. Make sure it's JSON formatted and uses the fields shown in <a href="config.html">config</a>.</li>
+<li>Now you can start it! Run one of the following:
+<ul>
+<li><code>DEBUG=app node index.js</code> if you <code>git clone</code>d</li>
+<li><code>DEBUG=app myfview</code> if you <code>npm install -g</code>'d</li>
+</ul>
+</li>
+</ol>
+<p>If you did it right, you'll have a web server up and running with myfview!</p>
+</article>
+
+</section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 19:32:54 GMT-0400 (Eastern Daylight Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
