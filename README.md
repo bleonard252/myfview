@@ -52,7 +52,7 @@ A more advanced myfile might look like this:
     ]
 }
 ```
-(In fact, that's *my* myfile! [see it here](https://blogold.xyz//blake))
+(In fact, that's *my* myfile! [see it here][my myfile])
 
 ## Why does myfview look for "//"?
 The URL is actually the myfile address! It follows the general format of [domain]//[username]. The `https://whatever.com` part is the "domain", and the part that identifies the user on that domain is the "username." This syntax means that the profile you're referring to with this address is uniquely a myfile.
@@ -61,3 +61,4 @@ Read more about myfiles [here][myfilespec].
 
 [myfilespec]: https://blogold.xyz/product/myfile/docs/
 [docs]: https://bleonard252.github.io/myfview/myfview/1.1.0/
+[my myfile]: https://blogold.xyz//blake
