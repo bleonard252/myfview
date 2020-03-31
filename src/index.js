@@ -11,6 +11,7 @@
 var defaults = require('defaults');
 const fs = require('fs');
 var hbs = require('handlebars');
+var njk = require('nunjucks');
 const YAML = require('js-yaml');
 const TOML = require('@tauri-apps/toml');
 const myf$debug = require('debug')('myfview');
@@ -74,22 +75,26 @@ module.exports = function myfview(options) {
         // Code to update the config when it's... updated
         if (ev == "change") {
             let _config = JSON.parse(fs.readFileSync(options.configPath))
-            config = defaults(config || {}, defconf);
+            config = defaults(_config || {}, defconf);
+            // Update things that need to be updated with the config
+            njk.configure(config.templatesPath);
             myf$debug("Myfile config updated");
         } else if (ev == "rename") {
             myf$debug("WARNING: the config was moved or renamed! I'm not updating this file anymore!");
             configwatch.close();
         }
     });
-    hbs = require('./hbs-helpers')(hbs); // Register helpers externally
+    //TODO: port the helpers to Nunjucks
+    //hbs = require('./hbs-helpers')(hbs); // Register helpers externally
+    njk.configure(config.templatesPath, {watch: true});
 
     //TODO: move away from handlebars. not enough logic, and
     //      too many problems arise, especially with the cli
 
-    /** The Handlebars template for profile pages. */
-    const hbs$user = hbs.compile(`${fs.readFileSync(config.templatesPath+"/user.hbs").toString()}`)
-    /** The Handlebars template for CLI profile pages. */
-    const hbs$cli = hbs.compile(`${fs.readFileSync(config.templatesPath+"/cli.hbs").toString()}`)
+    /* The Handlebars template for profile pages. */
+    //const hbs$user = hbs.compile(`${fs.readFileSync(config.templatesPath+"/user.hbs").toString()}`)
+    /* The Handlebars template for CLI profile pages. */
+    //const hbs$cli = hbs.compile(`${fs.readFileSync(config.templatesPath+"/cli.hbs").toString()}`)
     //TODO: maybe move some of these functions to other files, for readability purposes
     /**
      * Lookup a Myfile locally (i.e. on this server).
@@ -97,18 +102,6 @@ module.exports = function myfview(options) {
      * @returns {string} The Myfile data (as a JSON object), or `null` if it doesn't exist.
      */
     function myf$lookup(name) {
-        /*return Promise((resolve,reject) => {
-            fs.readFile(options.profilePath+"/"+name, (err, data) => { // the / is for good measure
-                if (!err) {
-                    myf = JSON.parse(data.toString());
-                    resolve(myf);
-                } else if (err.code == "ENOENT") resolve(null)
-                else {
-                    myf$debug.extend('lookup()')("Error: %O",err)
-                    reject(err)
-                }
-            })
-        })*/
         return require(options.profilePath+"/"+name+".json") // needs .json or it'll freak
     }
     /**
@@ -146,7 +139,7 @@ module.exports = function myfview(options) {
             "tml": "toml",
             "ini": "toml",
 
-            "curl": "cli", //DONE: change this to cli when it comes
+            "curl": "cli", //DONE: changed this from json to cli
             "txt": "cli",
             "text": "cli",
             "cli": "cli",
@@ -159,15 +152,12 @@ module.exports = function myfview(options) {
                 if (types[p]) return types[p]
             }
         }
-        //d("Query parameters: %o", q);
         if (u.startsWith("curl/")) return types["curl"];
-        //d("User agent: %o", u);
         let acc = a.accepts(["html", "json"]);
-        //d("Accept: %o", acc);
         /* */if (acc == "html") return "html";
         else if (acc == "json") return "json";
+//      else if (acc == "????") return "that new format that's 10x more based than anything we have"
 
-        //d("All else failed! Falling back to json");
         // and if all else fails...
         return "json"
     }
@@ -201,7 +191,7 @@ module.exports = function myfview(options) {
 
             if (rt == "html") {
                 //DONE: res.send(Handlebars...)
-                res.send(hbs$user({...prof,
+                res.send(njk.render("cli",{...prof,
                     /** @name render_extensions
                      * @description These are additions to the profile object passed to the Handlebars renderer.
                      * They are used to format information that is otherwise difficult to show, or
@@ -217,8 +207,7 @@ module.exports = function myfview(options) {
                      * 
                      * Available in the HTML and CLI templates.
                      * @type {string}
-                     * @memberof render_extensions 
-                     * @instance*/
+                     * @memberof render_extensions */
                     _displayname: prof['name'] || user || "No display name",
                     /** The username of the user, as it appears in the filename and URL.
                      * 
@@ -241,7 +230,7 @@ module.exports = function myfview(options) {
             } else if (rt == "cli") {
                 res.type("text/plain");
                 //myf$debug("%o",req.query.nc);
-                res.send(hbs$cli({...prof, 
+                res.send(njk.render("cli",{...prof, 
                     /** The no-color flag. If this is present, hide colors.
                      * 
                      * Only available for the CLI template.
