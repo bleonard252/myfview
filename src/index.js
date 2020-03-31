@@ -10,7 +10,7 @@
 // npm run gendoc
 var defaults = require('defaults');
 const fs = require('fs');
-var hbs = require('handlebars');
+//var hbs = require('handlebars');
 var njk = require('nunjucks');
 const YAML = require('js-yaml');
 const TOML = require('@tauri-apps/toml');
@@ -191,7 +191,7 @@ module.exports = function myfview(options) {
 
             if (rt == "html") {
                 //DONE: res.send(Handlebars...)
-                res.send(njk.render("cli",{...prof,
+                res.send(njk.render("html.njk",{...prof,
                     /** @name render_extensions
                      * @description These are additions to the profile object passed to the Handlebars renderer.
                      * They are used to format information that is otherwise difficult to show, or
@@ -230,7 +230,7 @@ module.exports = function myfview(options) {
             } else if (rt == "cli") {
                 res.type("text/plain");
                 //myf$debug("%o",req.query.nc);
-                res.send(njk.render("cli",{...prof, 
+                res.send(njk.render("cli.njk",{...prof, 
                     /** The no-color flag. If this is present, hide colors.
                      * 
                      * Only available for the CLI template.
