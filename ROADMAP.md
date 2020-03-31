@@ -8,3 +8,11 @@ These are "anticipated changelogs;" i.e. goals for each future release (tag). Th
 * `cli`/`txt`/`curl` Rendering Engine
 * Use the GitFlow branching model
 * A unique template and not just one stolen off the Internet for testing
+## 1.1 Release
+* `yaml` Rendering Engine
+* `toml` Rendering Engine
+* Links in `cli` and `html`
+* Docs improvements
+## 2.0 Release
+* Support for other rendering engines
+* Switch default rendering to Nunjucks (TBD)
