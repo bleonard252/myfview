@@ -82,6 +82,10 @@ module.exports = function myfview(options) {
         }
     });
     hbs = require('./hbs-helpers')(hbs); // Register helpers externally
+
+    //TODO: move away from handlebars. not enough logic, and
+    //      too many problems arise, especially with the cli
+
     /** The Handlebars template for profile pages. */
     const hbs$user = hbs.compile(`${fs.readFileSync(config.templatesPath+"/user.hbs").toString()}`)
     /** The Handlebars template for CLI profile pages. */
