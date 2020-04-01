@@ -1,4 +1,3 @@
-//const Handlebars = require('handlebars');
 const nunjucks = require('nunjucks');
 const $chalk = require('chalk');
 const mark = require('markdown-it');
@@ -31,7 +30,7 @@ module.exports = function njk$filters(njk) {
      * @param {string} content What to apply the formatting to. */
     function chalk(content, cholor) {
         try { return $chalk[cholor](content) }
-        catch (e) { myf$debug.extend("hbs:chalk")("Error: %O", e); return "" }
+        catch (e) { myf$debug.extend("njk:chalk")("Error: %O", e); return "" }
     }
     /** The Nunjucks filter `wrap`.
      * Useful to limit the length of terminal
@@ -43,9 +42,6 @@ module.exports = function njk$filters(njk) {
     }
     /*** The Nunjucks filter `cond`.
      * Improve the logic system.
-     * ```handlebars
-     * {{#if cond flag '||' otherflag}}
-     * ```
      * @param {*} v1 One boolean value or condition.
      * @param {'=='|'==='|'!='|'!=='|'<'|'<='|'>'|'>='|'&&'|'||'} operator The operation to apply.
      * @param {*} v2 Another boolean value or condition. * /
