@@ -86,7 +86,8 @@ module.exports = function myfview(options) {
     });
     //TODO: port the helpers to Nunjucks
     //hbs = require('./hbs-helpers')(hbs); // Register helpers externally
-    njk.configure(config.templatesPath, {watch: true});
+    njk = njk.configure(config.templatesPath, {watch: true})
+    njk = require('./njk-helpers')(njk);
 
     //TODO: move away from handlebars. not enough logic, and
     //      too many problems arise, especially with the cli
