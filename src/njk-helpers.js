@@ -1,4 +1,4 @@
-const Handlebars = require('handlebars');
+const nunjucks = require('nunjucks');
 const $chalk = require('chalk');
 const mark = require('markdown-it');
 const ww = require('word-wrap');
@@ -7,47 +7,44 @@ const myf$debug = require('debug')('myfview');
 var md = mark({linkify: true, html: false});
 md.block.ruler.__rules__.forEach(function(x){md.disable(x.name)}); //disable all the built-in blocks
 /**
- * myfview's Handlebars helpers.
+ * myfview's Nunjucks filters.
  * 
  * Use them like the following:
- * ```handlebars
- * {{name param1 param2}}
+ * ```nunjucks
+ * {{content | filter(params...)}}
  * ```
  * @module
- * @param {globalThis.Handlebars} hbs Handlebars. This will get the helpers attached to it.
+ * @param {nunjucks.Environment} njk The Nunjucks module. This will get the filters attached to it.
  */
-module.exports = function hbs$helpers(hbs) {
-    /** The handlebars helper `nlsp` (i.e. newline space).
+module.exports = function njk$filters(njk) {
+    /** The Nunjucks filter `nlsp` (i.e. newline space).
      * Useful to add indentation for the CLI mode. 
      * @param {int} spaces The number of spaces to indent each newline.
      * @param {string} content What to apply the indentation to. */
-    function nlsp(spaces, content) {
+    function nlsp(content, spaces) {
         return content.replace(/(\r\n|\r|\n)/g, "$1" + (" ".repeat(spaces)))
     }
-    /** The handlebars helper `chalk`.
+    /** The Nunjucks filter `chalk`.
      * Useful to add colors to the CLI mode. 
      * @param {string} cholor The color or formatting to apply.
      * @param {string} content What to apply the formatting to. */
-    function chalk(cholor, content) {
+    function chalk(content, cholor) {
         try { return $chalk[cholor](content) }
-        catch (e) { myf$debug.extend("hbs:chalk")("Error: %O", e); return "" }
+        catch (e) { myf$debug.extend("njk:chalk")("Error: %O", e); return "" }
     }
-    /** The handlebars helper `wrap`.
+    /** The Nunjucks filter `wrap`.
      * Useful to limit the length of terminal
      * lines in CLI mode. 
      * @param {Number} width The maximum size for each line. 
      * @param {string} str What to apply the wrapping to. */
-    function wrap(width, str) {
+    function wrap(str, width) {
         return ww(str, { width, indent: `` })
     }
-    /** The handlebars helper `cond`.
+    /*** The Nunjucks filter `cond`.
      * Improve the logic system.
-     * ```handlebars
-     * {{#if cond flag '||' otherflag}}
-     * ```
      * @param {*} v1 One boolean value or condition.
      * @param {'=='|'==='|'!='|'!=='|'<'|'<='|'>'|'>='|'&&'|'||'} operator The operation to apply.
-     * @param {*} v2 Another boolean value or condition. */
+     * @param {*} v2 Another boolean value or condition. * /
     function cond(v1, operator, v2) {
         switch (operator) {
             case '==':
@@ -73,7 +70,7 @@ module.exports = function hbs$helpers(hbs) {
             default:
                 return false
         }
-    }
+    }*/ // Nunjucks has this built in now!
     /**
      * Convert a Markdown inline string to HTML.
      * @param {string} content The content to convert.
@@ -93,11 +90,11 @@ module.exports = function hbs$helpers(hbs) {
             return x
         } else return content
     }
-    hbs.registerHelper("nlsp", nlsp);
-    hbs.registerHelper("chalk", chalk);
-    hbs.registerHelper("wrap", wrap);
-    hbs.registerHelper("cond", cond);
-    hbs.registerHelper("md", markdown);
-    hbs.registerHelper("linksplit", linksplit);
-    return hbs
+    njk.addFilter("nlsp", nlsp);
+    njk.addFilter("chalk", chalk);
+    njk.addFilter("wrap", wrap);
+    //njk.addFilter("cond", cond);
+    njk.addFilter("md", markdown);
+    njk.addFilter("linksplit", linksplit);
+    return njk
 }
