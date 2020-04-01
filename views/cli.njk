@@ -1,13 +1,13 @@
 
-  {{#unless _nc}}{{{chalk "bold" "Name:"}}}{{else}}Name:{{/unless}} {{{name}}}
-  {{#unless _nc}}{{{chalk "bold" "Bio:"}}}{{else}}Bio:{{/unless}}  {{{nlsp 8 (wrap 50 description)}}}{{#if picture}}
-  {{#unless _nc}}{{{chalk "bold" "Pic:"}}}{{else}}Pic:{{/unless}}  {{{picture}}}{{/if}}
+  {% if not _nc %}{{ "Name:" | chalk("bold") | safe }}{% else %}Name:{% endif %} {{ name | safe }}
+  {% if not _nc %}{{ "Bio:" | chalk("bold") | safe }}{% else %}Bio:{% endif %}  {{description | wrap(50) | nlsp(8) | safe}}{% if not picture %}
+  {% if not _nc %}{{ "Pic:" | chalk("bold") | safe }}{% else %}Pic:{% endif %}  {{ picture | safe }}{% endif %}
 
-  {{#if links}}{{#unless _nc}}{{{chalk "bold" "Links:"}}}{{else}}Links:{{/unless}}{{#each links}}
-    {{{linksplit this}}}{{/each}}{{/if}}{{!}}
-{{#if cards}}{{#each cards}}{{#unless this.type}}{{#if this.title}}{{#if this.text}}
-  {{#unless @root._nc}}{{{chalk "underline" this.title}}}{{else}}Title: {{{this.title}}}{{/unless}}
-  {{{nlsp 2 this.text}}}{{!- title+text cards w/o types => underlined title, then text }}
-{{/if}}{{/if}}{{/unless}}{{/each}}
-{{else}}
-{{/if}}{{!}}{{"\n"}}
+  {% if links %}{% if not _nc %}{{ "Links:" | chalk("bold") | safe }}{% else %}Links:{% endif %}{% for this in links %}
+    {{this | linksplit | safe}}{% endfor %}{% endif %}{#!! ! !!#}
+{% if cards %}{% for this in cards %}{% if not this.type %}{% if this.title %}{% if this.text %}
+  {% if not _nc %}{{ this.title | chalk("underline") | safe }}{% else %}Title: {{ this.title | safe }}{% endif %}
+  {{ this.text | nlsp(2) | safe }}{# title+text cards w/o types => underlined title, then text #}
+{% endif %}{% endif %}{% endif %}{% endfor %}
+{% else %}
+{% endif %}{#!! ! !!#}{#!! "\n" !!#}
