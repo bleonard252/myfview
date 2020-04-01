@@ -10,7 +10,6 @@
 // npm run gendoc
 var defaults = require('defaults');
 const fs = require('fs');
-//var hbs = require('handlebars');
 var njk = require('nunjucks');
 const YAML = require('js-yaml');
 const TOML = require('@tauri-apps/toml');
@@ -41,7 +40,12 @@ const defconf = {
      * "json", "yaml", "toml"
      * @type {string[]} */
     "privatefields": [],
-    /** Whether to watch the configuration file.
+    /** Whether to watch the configuration file
+     * and Nunjuks templates. This lets you update
+     * the files while the server is running. If
+     * you have a lot of templates, you may want
+     * to set this to false. Defaults to true.
+     * 
      * Only applies on startup. 
      * @type {boolean} */
     "watchme": true,
@@ -84,18 +88,10 @@ module.exports = function myfview(options) {
             configwatch.close();
         }
     });
-    //TODO: port the helpers to Nunjucks
-    //hbs = require('./hbs-helpers')(hbs); // Register helpers externally
-    njk = njk.configure(config.templatesPath, {watch: true})
+    //DONE: port the helpers to Nunjucks
+    njk = njk.configure(config.templatesPath, {watch: config.watchme})
     njk = require('./njk-helpers')(njk);
 
-    //TODO: move away from handlebars. not enough logic, and
-    //      too many problems arise, especially with the cli
-
-    /* The Handlebars template for profile pages. */
-    //const hbs$user = hbs.compile(`${fs.readFileSync(config.templatesPath+"/user.hbs").toString()}`)
-    /* The Handlebars template for CLI profile pages. */
-    //const hbs$cli = hbs.compile(`${fs.readFileSync(config.templatesPath+"/cli.hbs").toString()}`)
     //TODO: maybe move some of these functions to other files, for readability purposes
     /**
      * Lookup a Myfile locally (i.e. on this server).
@@ -191,14 +187,13 @@ module.exports = function myfview(options) {
             else prof = myf$lookup(req.hostname); // i.e. google.com//google.com
 
             if (rt == "html") {
-                //DONE: res.send(Handlebars...)
                 res.send(njk.render("html.njk",{...prof,
                     /** @name render_extensions
-                     * @description These are additions to the profile object passed to the Handlebars renderer.
+                     * @description These are additions to the profile object passed to the renderer.
                      * They are used to format information that is otherwise difficult to show, or
                      * give hints to the renderer about how to render the page.
                      * 
-                     * The HTML template is `user.hbs` and the CLI template is `cli.hbs`.
+                     * The HTML template is `html.njk` and the CLI template is `cli.njk`.
                      * 
                      * @namespace
                      * @global
@@ -216,7 +211,7 @@ module.exports = function myfview(options) {
                      * @type {string}
                      * @memberof render_extensions */
                     _username: user || "",
-                    /** Hints to Handlebars to use dark mode. This may be deprecated in a future
+                    /** Hints to the renderer to use dark mode. This may be deprecated in a future
                      * release to enable support for prefers-color-scheme.
                      * 
                      * Only available for the HTML template.
@@ -226,8 +221,7 @@ module.exports = function myfview(options) {
                 })); 
                 //Protip: you can add more key-value pairs to the object above!
                 //        i.e. {...prof, _privatething: "value"}
-                //        This allows access to the Myfile as Handlebars templates
-                //        and also enables extensions!
+                //        This allows extensions!
             } else if (rt == "cli") {
                 res.type("text/plain");
                 //myf$debug("%o",req.query.nc);
