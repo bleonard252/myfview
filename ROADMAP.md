@@ -15,4 +15,4 @@ These are "anticipated changelogs;" i.e. goals for each future release (tag). Th
 * Docs improvements
 ## 2.0 Release
 * Support for other rendering engines
-* Switch default rendering to Nunjucks (TBD)
+* Switch default rendering to Nunjucks
