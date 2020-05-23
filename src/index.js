@@ -67,7 +67,7 @@ const defconf = {
      * @example
      * "templatesPath": "./myfview-config/templates/"
      */
-    "templatesPath": process.cwd()+"/views",
+    "templatesPath": __dirname+"/../views",
     /** Force dark mode.
      * @type {boolean} */
     "forcedark": false
@@ -101,7 +101,7 @@ module.exports = function myfview(options) {
         }
     });
     //DONE: port the helpers to Nunjucks
-    njk = njk.configure(config.templatesPath, {watch: config.watchme})
+    njk = require('nunjucks').configure(config.templatesPath, {watch: config.watchme})
     njk = require('./njk-helpers')(njk);
     if (options.renderHTML == null) options.renderHTML = function(prof) {return njk.render("html.njk", prof)}
     if (options.renderCLI == null) options.renderCLI = function(prof) {return njk.render("cli.njk", prof)}
@@ -231,7 +231,13 @@ module.exports = function myfview(options) {
                      * Only available for the HTML template.
                      * @type {boolean}
                      * @memberof render_extensions */
-                    _darkflag: config.forcedark || (req.query.dark === '') || (req.query.theme == 'dark') || false
+                    _darkflag: config.forcedark || (req.query.dark === '') || (req.query.theme == 'dark') || false,
+                    /** Lets you check the values of the Express Request object.
+                     * 
+                     * Avaiable in the HTML and CLI templates.
+                     * @type {Express.Request}
+                     * @memberof render_extensions */
+                    _req: req
                 })); 
                 //Protip: you can add more key-value pairs to the object above!
                 //        i.e. {...prof, _privatething: "value"}
@@ -248,7 +254,8 @@ module.exports = function myfview(options) {
                     _nc: (req.query.nc === '' ? true : false) || (req.query.nocolor === '' ? true : false),
                     // _displayname and _username are already documented in HTML
                     _username: user || "",
-                    _displayname: prof['name'] || user || "No display name"
+                    _displayname: prof['name'] || user || "No display name",
+                    _req: req
                 }));
             } else { // essentially: else if (rt == "json") {
                 res.type("json");
