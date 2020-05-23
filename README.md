@@ -23,7 +23,7 @@ DEBUG=app node index.js
 ```
 
 ## What does this module do?
-myfview hosts myfiles. You can include it on an Express-based website as a middleware. It shows an HTML-based rendering to browsers (so, a webpage) using the Handlebars rendering engine.<!--TODO: add support for more rendering engines --> You can also `curl` the myfile to get a fancy terminal-optimized version, or override it with the `type` query parameter, i.e. `//username?type=json`. You can [read the docs][docs] for more details on what you can do.
+myfview hosts myfiles. You can include it on an Express-based website as a middleware. It shows an HTML-based rendering to browsers (so, a webpage) using the Nunjucks rendering engine.<!--TODO: add support for more rendering engines --> You can also `curl` the myfile to get a fancy terminal-optimized version, or override it with the `type` query parameter, i.e. `//username?type=json`. You can [read the docs][docs] for more details on what you can do.
 
 ## What is a myfile?
 A myfile is a simple JSON-based profile used to represent people, objects, places, or anything that can have a name, description (or, in the case of a person, bio), and picture. In fact, there are no required fields, so a myfile can look like this:
@@ -60,5 +60,5 @@ The URL is actually the myfile address! It follows the general format of [domain
 Read more about myfiles [here][myfilespec].
 
 [myfilespec]: https://blogold.xyz/product/myfile/docs/
-[docs]: https://bleonard252.github.io/myfview/myfview/1.1.0/
+[docs]: https://bleonard252.github.io/myfview/myfview/1.2.0/
 [my myfile]: https://blogold.xyz//blake

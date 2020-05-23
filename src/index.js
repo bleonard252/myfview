@@ -31,13 +31,13 @@ const defopts = {
      * or null to use the built-in Nunjucks renderer. 
      * Passed the Myfile JSON object, and should
      * return HTML string.
-     * @type {function(object) => string} */
+     * @type {function(object)} */
     "renderHTML": null,
     /** The function used for rendering to cURL, 
      * or null to use the built-in Nunjucks renderer. 
      * Passed the Myfile JSON object, and should
      * return CLI string.
-     * @type {function(object) => string} */
+     * @type {function(object)} */
     "renderCLI": null,
 }
 /** The (default) configuration file data for the middleware. 
