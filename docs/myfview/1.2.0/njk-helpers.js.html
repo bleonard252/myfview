@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: njk-helpers.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-middleware.html">Use as Express Middleware</a></li><li><a href="tutorial-standalone.html">Using myfview on its own</a></li></ul><h3>Modules</h3><ul><li><a href="module-myfview.html">myfview</a></li><li><a href="module-njk-helpers.html">njk-helpers</a></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li><li><a href="options.html">options</a></li><li><a href="render_extensions.html">render_extensions</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>njk-helpers.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const nunjucks = require('nunjucks');
+const $chalk = require('chalk');
+const mark = require('markdown-it');
+const ww = require('word-wrap');
+const myf$debug = require('debug')('myfview');
+
+var md = mark({linkify: true, html: false});
+md.block.ruler.__rules__.forEach(function(x){md.disable(x.name)}); //disable all the built-in blocks
+/**
+ * myfview's Nunjucks filters.
+ * 
+ * Use them like the following:
+ * ```nunjucks
+ * {{content | filter(params...)}}
+ * ```
+ * @module
+ * @param {nunjucks.Environment} njk The Nunjucks module. This will get the filters attached to it.
+ */
+module.exports = function njk$filters(njk) {
+    /** The Nunjucks filter `nlsp` (i.e. newline space).
+     * Useful to add indentation for the CLI mode. 
+     * @param {int} spaces The number of spaces to indent each newline.
+     * @param {string} content What to apply the indentation to. */
+    function nlsp(content, spaces) {
+        return content.replace(/(\r\n|\r|\n)/g, "$1" + (" ".repeat(spaces)))
+    }
+    /** The Nunjucks filter `chalk`.
+     * Useful to add colors to the CLI mode. 
+     * @param {string} cholor The color or formatting to apply.
+     * @param {string} content What to apply the formatting to. */
+    function chalk(content, cholor) {
+        try { return $chalk[cholor](content) }
+        catch (e) { myf$debug.extend("njk:chalk")("Error: %O", e); return "" }
+    }
+    /** The Nunjucks filter `wrap`.
+     * Useful to limit the length of terminal
+     * lines in CLI mode. 
+     * @param {Number} width The maximum size for each line. 
+     * @param {string} str What to apply the wrapping to. */
+    function wrap(str, width) {
+        return ww(str, { width, indent: `` })
+    }
+    /*** The Nunjucks filter `cond`.
+     * Improve the logic system.
+     * @param {*} v1 One boolean value or condition.
+     * @param {'=='|'==='|'!='|'!=='|'&lt;'|'&lt;='|'>'|'>='|'&amp;&amp;'|'||'} operator The operation to apply.
+     * @param {*} v2 Another boolean value or condition. * /
+    function cond(v1, operator, v2) {
+        switch (operator) {
+            case '==':
+                return (v1 == v2) ? true : false;
+            case '===':
+                return (v1 === v2) ? true : false;
+            case '!=':
+                return (v1 != v2) ? true : false;
+            case '!==':
+                return (v1 !== v2) ? true : false;
+            case '&lt;':
+                return (v1 &lt; v2) ? true : false;
+            case '&lt;=':
+                return (v1 &lt;= v2) ? true : false;
+            case '>':
+                return (v1 > v2) ? true : false;
+            case '>=':
+                return (v1 >= v2) ? true : false;
+            case '&amp;&amp;':
+                return (v1 &amp;&amp; v2) ? true : false;
+            case '||':
+                return (v1 || v2) ? true : false;
+            default:
+                return false
+        }
+    }*/ // Nunjucks has this built in now!
+    /**
+     * Convert a Markdown inline string to HTML.
+     * @param {string} content The content to convert.
+     */
+    function markdown(content) {
+        return md.renderInline(content);
+    }
+    /** Convert a Markdown link to text or keep the original.
+     * The string must include exactly one Markdown link;
+     * otherwise it will be returned as-is.
+     * @param {string} content The content to convert.
+     */
+    function linksplit(content) {
+        if (content.startsWith("[") &amp;&amp; content.endsWith(")") &amp;&amp; content.match(/\]\(/).length == 1) {
+            let x = content.substr(1, content.length - 2);
+            x = x.replace('](', ': ');
+            return x
+        } else return content
+    }
+    njk.addFilter("nlsp", nlsp);
+    njk.addFilter("chalk", chalk);
+    njk.addFilter("wrap", wrap);
+    //njk.addFilter("cond", cond);
+    njk.addFilter("md", markdown);
+    njk.addFilter("linksplit", linksplit);
+    return njk
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat May 23 2020 16:06:09 GMT-0400 (Eastern Daylight Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gendoc": "jsdoc src/index.js src/hbs-helpers.js -c jsdoc.config.json"
+    "gendoc": "jsdoc src/index.js src/njk-helpers.js -c jsdoc.config.json"
   },
   "author": "",
   "license": "CC-BY-4.0",
