@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: Use as Express Middleware</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-middleware.html">Use as Express Middleware</a></li><li><a href="tutorial-standalone.html">Using myfview on its own</a></li></ul><h3>Modules</h3><ul><li><a href="module-myfview.html">myfview</a></li><li><a href="module-njk-helpers.html">njk-helpers</a></li></ul><h3>Namespaces</h3><ul><li><a href="config.html">config</a></li><li><a href="options.html">options</a></li><li><a href="render_extensions.html">render_extensions</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Tutorial</p>
+                        <h1>Use as Express Middleware</h1>
+                    </header>
+                    
+                    <section>
+
+<header>
+    
+</header>
+
+<article>
+    <p>You want to make your myfiles available. Good for you!</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>An Express.js-based application</li>
+<li>Myfiles ending in &quot;.json&quot; (this is currently a Node requirement and may be removed in the future)
+in a special myfiles folder (such as the default, &quot;$PWD/myfview-config/myfiles/&quot;)</li>
+<li>The Node package manager (npm. You probably have it)</li>
+</ul>
+<h2>Instructions</h2>
+<ol>
+<li>Add myfview to your package:</li>
+</ol>
+<pre class="prettyprint source lang-sh"><code>npm install --save myfview
+</code></pre>
+<ol start="2">
+<li>Go into your Express app's code and add this:</li>
+</ol>
+<pre class="prettyprint source lang-js"><code>app.use(require(&quot;myfview&quot;)({}))
+</code></pre>
+<ol start="3">
+<li>Modify the above code to your requirements (i.e. change <code>app</code> or move the <code>require</code>). Inside of <code>{}</code>, you can add objects from <a href="options.html">options</a>.</li>
+<li>If you choose to have a config (see <a href="options.html#.configPath">options.configPath</a>), create the file you pointed to and add the fields from <a href="config.html">config</a> to it. (Hint: it's a json file!) By default, the config path is &quot;$PWD/myfview-config/config.json&quot;.</li>
+<li>If you want to edit the templates, copy them from the <a href="https://github.com/bleonard252/myfview/tree/master/views">repository</a> or the &quot;node_modules&quot; directory/folder npm installed myfview to (should be &quot;$PWD/node_modules/myfview/views&quot;) to the path you set in <a href="config.html#.templatesPath">config.templatesPath</a>. Edit to your heart's content!<br/> HINT: <!--By default,--> myfview uses <a href="https://handlebarsjs.com/guide/">Handlebars</a>. That's the templating engine we use to make the web and cURL pages.</li>
+</ol>
+<p>Now you can start up your development server and test your myfiles! It's &quot;[url to your server]//[filename without .json]&quot;.</p>
+</article>
+
+</section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat May 23 2020 17:53:19 GMT-0400 (Eastern Daylight Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
