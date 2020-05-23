@@ -60,5 +60,5 @@ The URL is actually the myfile address! It follows the general format of [domain
 Read more about myfiles [here][myfilespec].
 
 [myfilespec]: https://blogold.xyz/product/myfile/docs/
-[docs]: https://bleonard252.github.io/myfview/myfview/1.2.0/
+[docs]: https://bleonard252.github.io/myfview/myfview/1.2.1/
 [my myfile]: https://blogold.xyz//blake
