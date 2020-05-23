@@ -27,6 +27,18 @@ const defopts = {
     /** Filename for the myfview configuration. This file will be watched and loaded. 
      * @type {string} */
     "configPath": process.cwd()+"/myfview-config/config.json",
+    /** The function used for rendering to HTML, 
+     * or null to use the built-in Nunjucks renderer. 
+     * Passed the Myfile JSON object, and should
+     * return HTML string.
+     * @type {function(object) => string} */
+    "renderHTML": null,
+    /** The function used for rendering to cURL, 
+     * or null to use the built-in Nunjucks renderer. 
+     * Passed the Myfile JSON object, and should
+     * return CLI string.
+     * @type {function(object) => string} */
+    "renderCLI": null,
 }
 /** The (default) configuration file data for the middleware. 
  * 
@@ -91,6 +103,8 @@ module.exports = function myfview(options) {
     //DONE: port the helpers to Nunjucks
     njk = njk.configure(config.templatesPath, {watch: config.watchme})
     njk = require('./njk-helpers')(njk);
+    if (options.renderHTML == null) options.renderHTML = function(prof) {return njk.render("html.njk", prof)}
+    if (options.renderCLI == null) options.renderCLI = function(prof) {return njk.render("cli.njk", prof)}
 
     //TODO: maybe move some of these functions to other files, for readability purposes
     /**
@@ -187,7 +201,7 @@ module.exports = function myfview(options) {
             else prof = myf$lookup(req.hostname); // i.e. google.com//google.com
 
             if (rt == "html") {
-                res.send(njk.render("html.njk",{...prof,
+                res.send(options.renderHTML({...prof,
                     /** @name render_extensions
                      * @description These are additions to the profile object passed to the renderer.
                      * They are used to format information that is otherwise difficult to show, or
@@ -225,7 +239,7 @@ module.exports = function myfview(options) {
             } else if (rt == "cli") {
                 res.type("text/plain");
                 //myf$debug("%o",req.query.nc);
-                res.send(njk.render("cli.njk",{...prof, 
+                res.send(options.renderCLI({...prof, 
                     /** The no-color flag. If this is present, hide colors.
                      * 
                      * Only available for the CLI template.
