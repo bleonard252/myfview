@@ -1,6 +1,6 @@
 {
   "name": "myfview",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Myfile viewer",
   "repository": {
     "url": "https://github.com/bleonard252/myfview"
@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gendoc": "jsdoc src/index.js src/hbs-helpers.js -c jsdoc.config.json"
+    "gendoc": "jsdoc src/index.js src/njk-helpers.js -c jsdoc.config.json"
   },
   "author": "",
   "license": "CC-BY-4.0",
@@ -16,11 +16,12 @@
     "@tauri-apps/toml": "^2.2.4",
     "arg": "^4.1.3",
     "chalk": "^3.0.0",
+    "chokidar": "^3.3.1",
     "debug": "^4.1.1",
     "defaults": "^1.0.3",
-    "handlebars": "^4.7.3",
     "js-yaml": "^3.13.1",
     "markdown-it": "^10.0.0",
+    "nunjucks": "^3.2.1",
     "supports-color": "^7.1.0",
     "word-wrap": "^1.2.3"
   },

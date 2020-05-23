@@ -16,7 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    {{#if _darkflag }}<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">{{/if}}
+    {% if _darkflag  %}<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">{% endif %}
     <style>
         .profile-pic {
             width: calc(18rem/2);
@@ -30,38 +30,38 @@
 <body>
     <main class="container">
         <div class="row">
-            {{#unless cards}}<div class="col-4"></div>{{/unless}}
+            {% if not cards %}<div class="col-4"></div>{% endif %}
             <div class="col-4">
                 <div class="card" style="/*width: 18rem;*/ margin: auto; margin-top: 4rem">
-                    {{#if picture}}<img src="{{picture}}" class="profile-pic" alt="Profile picture">{{/if}}
+                    {% if picture %}<img src="{{picture}}" class="profile-pic" alt="Profile picture">{% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{_displayname}}</h5>
-                        <p class="card-text">{{{md description}}}</p>
-                        {{#if links}}<ul>{{#each links}}
-                            <li>{{{md this}}}</li>
-                            {{/each}}</ul>{{/if}}
+                        <p class="card-text">{{description | md | safe}}</p>
+                        {% if links %}<ul>{% for this in links %}
+                            <li>{{this | md | safe}}</li>
+                            {% endfor %}</ul>{% endif %}
                     </div>
                 </div>
-                {{!Previous location of cards. Will probably move back}}
+                {# Previous location of cards. Will probably move back #}
             </div>
-            {{#if cards}}<div class="col-8">
-                {{#each cards}}{{#unless this.type}}{{#if this.title}}{{#if this.text}}
+            {% if cards %}<div class="col-8">
+                {% for this in cards %}{% if not this.type %}{% if this.title %}{% if this.text %}
                 <div class="card" style="/*width: 18rem;*/ margin: auto; margin-top: 2em">
-                    {{#if this.picture}}<img src="{{picture}}" class="card-img-top">{{/if}}
+                    {% if this.picture %}<img src="{{this.picture}}" class="card-img-top">{% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{title}}</h5>
-                        <p class="card-text">{{text}}</p>
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.text | md}}</p>
                     </div>
-                </div>{{else if this.picture}}
+                </div>{% elseif this.picture %}
                 <div class="card" style="/*width: 18rem;*/ margin: auto; margin-top: 2em">
-                    <img src="{{picture}}" class="card-img-top">
+                    <img src="{{this.picture}}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{title}}</h5>
-                        {{! already checked for the text. it doesn't exist. don't show it. }}
+                        <h5 class="card-title">{{this.title}}</h5>
+                        {# already checked for the text. it doesn't exist. don't show it. #}
                     </div>
                 </div>
-                {{/if}}{{/if}}{{/unless}}{{/each}}
-            </div>{{else}}<div class="col-4"></div>{{/if}}
+                {% endif %}{% endif %}{% endif %}{% endfor %}
+            </div>{% else %}<div class="col-4"></div>{% endif %}
         </div>
     </main>
 </body>
