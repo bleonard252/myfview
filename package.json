@@ -20,7 +20,7 @@
     "debug": "^4.1.1",
     "defaults": "^1.0.3",
     "js-yaml": "^3.13.1",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "nunjucks": "^3.2.1",
     "supports-color": "^7.1.0",
     "word-wrap": "^1.2.3"
